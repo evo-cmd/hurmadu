@@ -1,0 +1,27 @@
+body {
+    @apply bg-gray-100 text-gray-800 font-sans;
+}
+
+.container {
+    @apply mx-auto p-4 max-w-lg;
+}
+
+.header {
+    @apply text-2xl font-bold mb-4;
+}
+
+.input-group {
+    @apply mb-4;
+}
+
+.input {
+    @apply w-full p-2 border border-gray-300 rounded;
+}
+
+.button {
+    @apply bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition;
+}
+
+.output {
+    @apply mt-4 p-4 border border-gray-300 rounded bg-white;
+}
