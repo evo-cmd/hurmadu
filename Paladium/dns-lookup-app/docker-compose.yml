@@ -24,5 +24,4 @@ services:
   dns-container:
     build:
       context: ./dns
-  command: ["sleep","infinity"]
-  
+    command: ["dnsmasq", "-k"]
