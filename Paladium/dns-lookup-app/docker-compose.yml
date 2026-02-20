@@ -22,6 +22,7 @@ services:
       - dns-container
 
   dns-container:
-  build: ./dns
+    build:
+      context: ./dns
   command: ["sleep","infinity"]
   
