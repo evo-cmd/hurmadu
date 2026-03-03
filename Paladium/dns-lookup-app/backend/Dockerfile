@@ -4,7 +4,9 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install
+
+# Ensure Node.js types are installed for TypeScript
+RUN npm install && npm install --save-dev @types/node
 
 COPY . .
 

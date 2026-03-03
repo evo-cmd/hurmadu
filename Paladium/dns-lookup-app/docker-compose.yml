@@ -24,4 +24,5 @@ services:
   dns-container:
     build:
       context: ./dns
+    container_name: paladium_dns
     command: ["dnsmasq", "-k"]

@@ -16,16 +16,16 @@ export class DNSController {
         const results = [];
 
         try {
+
             const containerId = await startDockerContainer();
 
             for (const domain of domains) {
                 const command = `dig ${domain}`;
-                const { stdout, stderr } = await execPromise(command, { shell: true, cwd: `/var/lib/docker/containers/${containerId}` });
-
-                if (stderr) {
-                    results.push({ domain, error: stderr });
+                const execResult = await execPromise(command, { encoding: 'utf8' });
+                if (execResult.stderr) {
+                    results.push({ domain, error: execResult.stderr });
                 } else {
-                    results.push({ domain, output: stdout });
+                    results.push({ domain, output: execResult.stdout });
                 }
             }
 

@@ -63,6 +63,26 @@ dns-lookup-app
 - Click the submit button to initiate the DNS lookup.
 - The application will display the formatted DNS information retrieved from the backend.
 
+## DNS CLI & Backend control
+
+The `dns` service image includes a tiny CLI `/usr/local/bin/check-dns` which runs `dig` against the local `dnsmasq` server.
+
+Examples (run on the host):
+
+```
+# Build and start the stack
+docker-compose build
+docker-compose up -d
+
+# Manually run the CLI inside the dns container
+docker exec -i paladium_dns check-dns example.com google.com
+```
+
+Programmatic control from the backend:
+
+- The backend implements `startDockerContainer()` and `stopDockerContainer()` which call `docker-compose -f <path> up -d dns-container` and `docker-compose -f <path> stop dns-container` respectively. This requires `docker-compose` (or `docker compose`) to be available where the backend runs and access to the Docker daemon.
+- If you run the backend inside Docker and want it to control containers on the host, bind-mount the Docker socket and provide the `docker-compose` binary, or run the backend on the host.
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
